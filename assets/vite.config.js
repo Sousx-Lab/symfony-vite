@@ -1,7 +1,7 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { resolve } from 'path';
 
-// (optionel) Ce plugin permet de lancer un refresh de la page lors de la modification d'un fichier twig
+// Ce plugin permet de lancer un refresh de la page lors de la modification d'un fichier twig
 const twigRefreshPlugin = {
   name: 'twig-refresh',
   configureServer({ watcher, ws }) {
@@ -28,6 +28,7 @@ export default defineConfig(({ command }) => ({
   build: {
     assetsDir: './',
     outDir: command === 'serve' ? './' : './build',
+    
     rollupOptions: {
       output: {
         entryFileNames: `[name].js`,
@@ -36,7 +37,8 @@ export default defineConfig(({ command }) => ({
         manualChunks: undefined, // On ne veut pas créer un fichier vendors, car on n'a ici qu'un point d'entré
       },
       input: {
-        main: 'main.js',
+        "app": 'app.js',
+        "app.css": `./css/app.scss${command === 'serve' ? '?inline': ''}`
       },
     },
   },
