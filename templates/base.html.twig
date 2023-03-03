@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-             {% if app.environment is defined and app.environment == 'dev' %}
-              <link rel="stylesheet" href="http://localhost:5173/css/app.scss">
-            {% else %}
-              <link rel="stylesheet" href="/build/app.css">
-          {% endif %}
-        {% endblock %}
-    </head>
-    <body>
-    {% include "./component/header.html.twig" %}
-     <main class="fr-container">
-        {% block body %}{% endblock %}
-         </main>
-         {% block javascripts %}
-          {% if app.environment is defined and app.environment == 'dev' %}
-            <script type="module" src="http://localhost:5173/@vite/client"></script>
-            <script type="module" src="http://localhost:5173/app.js"></script>
-          {% else %}
-            <script type="module" src="./build/app.js"></script>
-          {% endif %}
-        {% endblock %}
-        {% include "./component/footer.html.twig" %}
-    </body>
-</html>
+<html lang="fe">
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{% if app.environment is defined and app.environment == 'dev' %}
+				<link rel="stylesheet" href="http://localhost:5173/css/app.scss">
+			{% else %}
+				<link rel="stylesheet" href="/build/app.css">
+			{% endif %}
+		{% endblock %}
+	</head>
+	<body>
+		{% include "./component/header.html.twig" %}
+		<main class="fr-container"> {% block body %}{% endblock %}
+			</main>
+			{% block javascripts %}
+				{% if app.environment is defined and app.environment == 'dev' %}
+					<script type="module" src="http://localhost:5173/@vite/client"></script>
+					<script type="module" src="http://localhost:5173/app.js"></script>
+				{% else %}
+					<script type="module" src="./build/app.js"></script>
+				{% endif %}
+			{% endblock %}
+			{% include "./component/footer.html.twig" %}
+		</body>
+	</html>
